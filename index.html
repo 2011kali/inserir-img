@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" id="inputImage" style="display: none;">
+    <button onclick="openFileInput()">Adiciona Imagem</button>
+    <img id="previewImage" style="max-width: 100%; display: none;">
+
+    <script>
+        function openFileInput() {
+            document.getElementById('inputImage').click();
+        }
+
+        function previewImage() {
+            var input = document.getElementById('inputImage');
+            var preview = document.getElementById('previewImage');
+
+            var file = input.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+         
+        document.getElementById('inputImage')
+            .addEventListener('change', previewImage);
+    </script>
+</body>
+</html>
